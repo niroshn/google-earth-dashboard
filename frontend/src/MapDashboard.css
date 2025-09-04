@@ -1,0 +1,313 @@
+/* MapDashboard.css */
+
+.map-dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Controls Section */
+.map-controls {
+  background: #2d3748;
+  padding: 15px 20px;
+  border-bottom: 1px solid #4a5568;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.controls-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: #e2e8f0;
+  min-width: 50px;
+}
+
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  background: #1a202c;
+  color: #e2e8f0;
+  font-size: 14px;
+  min-width: 120px;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: #63b3ed;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.25);
+}
+
+.filter-group select:disabled {
+  background-color: #2d3748;
+  color: #718096;
+  opacity: 0.65;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.2);
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.aoi-details {
+  background-color: rgba(99, 179, 237, 0.1);
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  margin-top: 4px;
+}
+
+.loading-indicator {
+  color: #63b3ed;
+  font-weight: 500;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.loading-indicator:before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #4a5568;
+  border-top: 2px solid #63b3ed;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: #fc8181;
+  font-weight: 500;
+  margin-left: 20px;
+  padding: 8px 12px;
+  background-color: #2d1b1b;
+  border: 1px solid #4a2424;
+  border-radius: 4px;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Map Container */
+.map-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 0; /* Important for flex child */
+}
+
+/* Legend Styling */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(26, 32, 44, 0.95);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(74, 85, 104, 0.3);
+  z-index: 1000;
+  min-width: 180px;
+  backdrop-filter: blur(5px);
+}
+
+.legend-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.legend-gradient {
+  height: 20px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: linear-gradient(to right, 
+    #0066cc 0%,     /* Cool blue for low temperatures */
+    #00ccff 25%,    /* Light blue */
+    #66ff66 50%,    /* Green for medium temperatures */
+    #ffff00 75%,    /* Yellow */
+    #ff6600 100%    /* Red/orange for high temperatures */
+  );
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+/* Leaflet popup customization */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: inherit;
+  min-width: 180px;
+  white-space: nowrap;
+}
+
+/* Fix radio button colors - make unselected ones white */
+.leaflet-control-layers input[type="radio"] {
+  background: white !important;
+  border: 2px solid #ccc !important;
+}
+
+/* Dark theme for Leaflet controls */
+.leaflet-control-zoom,
+.leaflet-control-layers {
+  background: rgba(45, 55, 72, 0.9) !important;
+  border-radius: 6px !important;
+  border: 1px solid #4a5568 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(45, 55, 72, 0.9) !important;
+  color: #e2e8f0 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.leaflet-control-layers-toggle {
+  background: rgba(45, 55, 72, 0.9) !important;
+  background-image: url("data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='%23e2e8f0' d='m1.5 4 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm-20 10 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm-20 10 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 18px 18px !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(74, 85, 104, 0.9) !important;
+  color: #ffffff !important;
+}
+
+.leaflet-control-layers-toggle:hover {
+  background: rgba(74, 85, 104, 0.9) !important;
+  background-image: url("data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='%23ffffff' d='m1.5 4 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm-20 10 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2zm-20 10 2-2h5l2 2v5l-2 2h-5l-2-2zm10 0 2-2h5l2 2v5l-2 2h-5l-2-2z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 18px 18px !important;
+}
+
+.leaflet-control-layers-expanded {
+  background: rgba(45, 55, 72, 0.95) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+/* Geoman Drawing Controls - Dark theme styling */
+.leaflet-pm-toolbar {
+  background: rgba(45, 55, 72, 0.9) !important;
+  border-radius: 6px !important;
+  border: 1px solid #4a5568 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-pm-toolbar .leaflet-pm-icon-button {
+  background: rgba(45, 55, 72, 0.9) !important;
+  border: 1px solid #4a5568 !important;
+  color: #e2e8f0 !important;
+  border-radius: 4px !important;
+}
+
+.leaflet-pm-toolbar .leaflet-pm-icon-button:hover {
+  background: rgba(74, 85, 104, 0.9) !important;
+  color: #ffffff !important;
+}
+
+.leaflet-pm-toolbar .leaflet-pm-icon-button.active {
+  background: rgba(99, 179, 237, 0.9) !important;
+  color: #ffffff !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .controls-row {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .filter-group {
+    justify-content: space-between;
+  }
+  
+  .filter-group select {
+    min-width: 150px;
+  }
+  
+  .map-legend {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+  
+  .loading-indicator,
+  .error-message {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-controls {
+    padding: 10px 15px;
+  }
+  
+  .map-container {
+    height: calc(100vh - 120px);
+  }
+}

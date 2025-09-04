@@ -1,0 +1,11 @@
+# For Flask development server (local testing)
+flask
+flask-cors
+
+# For Lambda deployment (production)
+earthengine-api
+python-dotenv
+
+# For AWS deployment
+boto3
+botocore
